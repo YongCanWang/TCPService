@@ -82,6 +82,10 @@ public class SocketService {
         }
 //        }
     }
+
+    /**
+     * 监听客户端请求
+     */
     public static void getClientData2() {
         InputStream inputStream = null;
         try {

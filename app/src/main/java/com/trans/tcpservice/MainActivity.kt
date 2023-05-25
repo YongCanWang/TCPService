@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.trans.udpservice.DatagramSocketService
 
 class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
@@ -14,11 +15,15 @@ class MainActivity : AppCompatActivity() {
         Log.e(TAG, "IP地址:$ipv4Address")
     }
 
-    fun onStart(view: View) {
+    fun onStartTCPService(view: View) {
         Thread(SocketService.net).start()
     }
 
-    fun onSend(view: View) {
-        SocketService.sendDataToClient("Hello，我来自服务端")
+    fun onSendTCPDataToClient(view: View) {
+        SocketService.sendDataToClient("Hello,我是TCP数据,我来自服务端")
+    }
+
+    fun onReceiveUDPDataFromClient(view: View) {
+        Thread(DatagramSocketService.net).start()
     }
 }
