@@ -3,6 +3,7 @@ package com.trans.tcpservice
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.trans.udpservice.DatagramSocketService
 
@@ -13,6 +14,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val ipv4Address = SocketService.getIPAddress(this)
         Log.e(TAG, "IP地址:$ipv4Address")
+        findViewById<TextView>(R.id.tv_ip).text = "IP: $ipv4Address"
     }
 
     fun onStartTCPService(view: View) {

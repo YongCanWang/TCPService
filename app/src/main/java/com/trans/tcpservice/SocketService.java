@@ -34,15 +34,19 @@ public class SocketService {
         @Override
         public void run() {
             try {
+                Log.e(TAG, "start");
                 serverSocket = new ServerSocket(PORT); // 监听12345端口 阻塞状态
                 Log.e(TAG, "服务器连接中.....等待客户端(线程为阻塞状态)");
                 clientSocket = serverSocket.accept();
                 Log.e(TAG, "客户端上线......已连接到客户端");
                 // 监听客户端
                 getClientData2();
+                Log.e(TAG, "服务器-客户端: 断开连接");
             } catch (Exception e) {
                 Log.e(TAG, "端口被占用:" + e);
                 e.printStackTrace();
+            } finally {
+                Log.e(TAG, "end");
             }
         }
     };
@@ -114,6 +118,7 @@ public class SocketService {
                 try {
                     clientSocket.getOutputStream().write(msg.getBytes()); // 写入数据
                     clientSocket.getOutputStream().flush();
+                    Log.e(TAG, "已发送数据到客户端");
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.e(TAG, "发送数据错误:" + e);
